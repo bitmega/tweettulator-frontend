@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "owner": "admin NUS",
+    "text": "22",
+    "parentId": null,
+    "createdAt": "2022-06-19T09:21:20.997Z",
+    "currentResult": "",
+    "previousResult": "",
+    "comments": [
+      {
+        "id": 2,
+        "owner": "admin1 NUS",
+        "text": "+1",
+        "parentId": 1,
+        "createdAt": "2022-06-19T09:21:20.997Z",
+        "currentResult": "23",
+        "previousResult": "1",
+        "comments": [
+          {
+            "id": 4,
+            "owner": "admin2 NUS",
+            "text": "+10",
+            "parentId": 2,
+            "createdAt": "2022-06-19T09:21:20.997Z",
+            "currentResult": "33",
+            "previousResult": "23",
+            "comments": []
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "owner": "admin3 NUS",
+        "text": "-5",
+        "parentId": 1,
+        "createdAt": "2022-06-19T09:21:20.997Z",
+        "currentResult": "18",
+        "previousResult": "23",
+        "comments": []
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "owner": "admin NUS",
+    "text": "30",
+    "parentId": null,
+    "createdAt": "2022-06-18T07:21:20.997Z",
+    "currentResult": "",
+    "previousResult": "",
+    "comments": []
+  }
+]
