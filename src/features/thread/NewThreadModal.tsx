@@ -6,9 +6,9 @@ import { useCreateThreadMutation } from "../../app/services/threadAPI";
 import { IUser } from "../../interfaces/Auth";
 import { selectCurrentUser } from "../auth/authSlice";
 
-export default function NewThreadModal() {
-  const [open, setOpen] = useState(false);
-  const [text, setText] = useState("");
+export default function NewThreadModal(): JSX.Element {
+  const [open, setOpen] = useState<boolean>(false);
+  const [text, setText] = useState<string>("");
 
   const [createThread, { isLoading, isError, error }] =
     useCreateThreadMutation();

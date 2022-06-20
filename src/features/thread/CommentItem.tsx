@@ -18,32 +18,29 @@ type ReplyCommentState = {
   content: string;
 };
 
-const renderCommentText = (comment: IThread) => {
-  if (comment.parentId)
+const renderCommentText = (comment: IThread): JSX.Element => {
+  if (comment.parent?.id) {
     return (
       <>
-        <p>
-          Previous Result: <b>{comment.previousResult}</b>
-        </p>
         <p>
           Operator: <b>{comment.text}</b>
         </p>
         <p>
-          Result: <b>{comment.currentResult}</b>{" "}
+          Result: <b>{comment.currentResult.toFixed(2)}</b>{" "}
         </p>
       </>
     );
-  else {
-    return (
-      <p>
-        <b>{comment.text}</b>
-      </p>
-    );
   }
+
+  return (
+    <p>
+      <b>{comment.text}</b>
+    </p>
+  );
 };
 
-export default function CommentItem({ comment }: CommentItemProps) {
-  const [openReply, setOpenReply] = useState(false);
+export default function CommentItem({ comment }: CommentItemProps): JSX.Element {
+  const [openReply, setOpenReply] = useState<boolean>(false);
   const [replyState, setReplyState] = useState<ReplyCommentState>({
     content: "",
     error: false,
@@ -61,12 +58,12 @@ export default function CommentItem({ comment }: CommentItemProps) {
     const { value } = event.target;
 
     if (OPERATOR_PATTERN.test(value)) {
-      setReplyState((prev) => ({
+      setReplyState(() => ({
         content: value,
         error: false,
       }));
     } else {
-      setReplyState((prev) => ({
+      setReplyState((prev: ReplyCommentState) => ({
         ...prev,
         error: "Please input valid operator",
       }));
@@ -77,7 +74,7 @@ export default function CommentItem({ comment }: CommentItemProps) {
     if (!error) {
       await createThread({
         text: content,
-        owner: user.first_name + " " + user.last_name,
+        owner: `${user.first_name } ${user.last_name}`,
         parentId: comment.id,
       });
     }
@@ -92,6 +89,7 @@ export default function CommentItem({ comment }: CommentItemProps) {
       toast(message, { type: "error" });
     }
   }, [isError, error]);
+
   return (
     <Comment>
       <Comment.Avatar as="a" src={RANDOM_AVATAR + comment.owner} />

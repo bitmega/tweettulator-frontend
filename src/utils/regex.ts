@@ -1,1 +1,1 @@
-export const OPERATOR_PATTERN = new RegExp(/^[+\-*/]\d+$/);
+export const OPERATOR_PATTERN: RegExp = new RegExp(/^[+\-*/]\d+$/);

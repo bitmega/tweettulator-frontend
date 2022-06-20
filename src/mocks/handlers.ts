@@ -1,7 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { DefaultBodyType, MockedRequest, rest, RestHandler } from "msw";
 import { LoginRequest, UserResponse } from "../interfaces/Auth";
-import mockData from "./data.json";
 const token = nanoid();
 
 export const handlers: RestHandler<MockedRequest<DefaultBodyType>>[] =
@@ -25,10 +24,5 @@ export const handlers: RestHandler<MockedRequest<DefaultBodyType>>[] =
         ctx.delay(400),
         ctx.json({ data })
       );
-    }),
-    rest.get("/api/v1/threads", (req, res, ctx) => {
-      return res(ctx.json({
-        data: mockData
-      }))
     })
   ];

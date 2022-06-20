@@ -27,7 +27,7 @@ export const api = createApi({
         },
       }),
       createThread: build.mutation<IThread, ICreateThreadRequest>({
-        query: (payload) => ({ url: "/v1/threads", method: "post", data: payload }),
+        query: (payload) => ({ url: "/v1/threads", method: "post", body: payload }),
         transformResponse: (response: IResponse<IThread>) => {
           return response.data;
         },

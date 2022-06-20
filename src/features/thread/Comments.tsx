@@ -5,7 +5,7 @@ import CommentItem from "./CommentItem";
 type CommentThreadedProps = {
   data: IThread[];
 };
-export default function CommentThreaded({ data }: CommentThreadedProps) {
+export default function CommentThreaded({ data }: CommentThreadedProps): JSX.Element {
   return (
     <Comment.Group threaded size="big">
       {data.map((thread) => (

@@ -5,9 +5,9 @@ export interface IThread {
   text: string;
   comments: IThread[] | null;
   createdAt: string;
-  currentResult: string;
-  previousResult: string;
+  currentResult: number;
   parentId: number | null;
+  parent: IThread | null
 }
 
 export type ICreateThreadRequest = Partial<Omit<IThread, "id" | "createdAt">>;

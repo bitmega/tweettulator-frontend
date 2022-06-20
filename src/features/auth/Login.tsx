@@ -1,14 +1,15 @@
+import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import { useLoginMutation } from "../../app/services/authAPI";
 import { LoginRequest } from "../../interfaces/Auth";
 import { setCredentials } from "./authSlice";
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch: Dispatch<AnyAction> = useDispatch();
+  const navigate: NavigateFunction = useNavigate();
 
   const [formState, setFormState] = useState<LoginRequest>({
     username: "",
