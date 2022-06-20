@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Button, Form, Modal } from "semantic-ui-react";
-import { useCreateThreadMutation } from "../../app/services/threadAPI";
+import {
+  useCreateThreadMutation,
+  useGetThreadsQuery,
+} from "../../app/services/threadAPI";
 import { IUser } from "../../interfaces/Auth";
 import { selectCurrentUser } from "../auth/authSlice";
 
@@ -12,6 +15,8 @@ export default function NewThreadModal(): JSX.Element {
 
   const [createThread, { isLoading, isError, error }] =
     useCreateThreadMutation();
+  const { refetch } = useGetThreadsQuery();
+
   const user = useSelector(selectCurrentUser) as IUser;
 
   const handleCreateNewThread = async (): Promise<void> => {
@@ -19,6 +24,7 @@ export default function NewThreadModal(): JSX.Element {
       text,
       owner: user.first_name + " " + user.last_name,
     });
+    refetch();
     setOpen(false);
   };
 

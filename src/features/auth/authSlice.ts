@@ -16,11 +16,13 @@ const slice = createSlice({
       state.user = user;
       state.token = token;
       localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("user", JSON.stringify(user));
     },
     logout: (state: IAuthState, { payload }: PayloadAction<undefined>) => {
       state.user = null;
       state.token = null;
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   }
 });

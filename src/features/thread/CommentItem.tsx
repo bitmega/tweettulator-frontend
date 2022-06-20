@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Button, Comment, Form, Grid } from "semantic-ui-react";
-import { useCreateThreadMutation } from "../../app/services/threadAPI";
+import {
+  useCreateThreadMutation,
+  useGetThreadsQuery,
+} from "../../app/services/threadAPI";
 import { IUser } from "../../interfaces/Auth";
 import { IThread } from "../../interfaces/Comment";
 import { RANDOM_AVATAR } from "../../utils/constants";
@@ -39,7 +42,9 @@ const renderCommentText = (comment: IThread): JSX.Element => {
   );
 };
 
-export default function CommentItem({ comment }: CommentItemProps): JSX.Element {
+export default function CommentItem({
+  comment,
+}: CommentItemProps): JSX.Element {
   const [openReply, setOpenReply] = useState<boolean>(false);
   const [replyState, setReplyState] = useState<ReplyCommentState>({
     content: "",
@@ -48,6 +53,7 @@ export default function CommentItem({ comment }: CommentItemProps): JSX.Element 
   const [createThread, { isLoading, isError, error }] =
     useCreateThreadMutation();
   const user = useSelector(selectCurrentUser) as IUser;
+  const { refetch } = useGetThreadsQuery();
 
   const handleOpenReply = (): void => {
     setOpenReply(!openReply);
@@ -74,9 +80,10 @@ export default function CommentItem({ comment }: CommentItemProps): JSX.Element 
     if (!error) {
       await createThread({
         text: content,
-        owner: `${user.first_name } ${user.last_name}`,
+        owner: `${user.first_name} ${user.last_name}`,
         parentId: comment.id,
       });
+      refetch();
     }
   };
 
