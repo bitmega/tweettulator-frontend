@@ -5,7 +5,7 @@ import { store } from "../app/store";
 import App from "../App";
 import { BrowserRouter } from "react-router-dom";
 
-test("renders sign in react", () => {
+test("renders sign-in text", () => {
   render(
     <Provider store={store}>
       <BrowserRouter>
